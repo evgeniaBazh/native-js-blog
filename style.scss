@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800;900&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+}
+
+.head {
+  width: 100%;
+  height: 48px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0px 1px 8px 0px rgb(0 0 236 / 20%), 0px 3px 4px 0px rgb(0 0 236 / 14%),
+    0px 3px 3px -2px rgb(0 0 236 / 12%);
+  padding: 0 20px;
+
+  &__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #5a98e7;
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+}
+
+.container {
+  width: 1250px;
+  display: grid;
+  justify-content: space-between;
+  padding: 60px 30px 80px 30px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, 320px);
+  row-gap: 20px;
+  align-items: flex-start;
+  margin-top: 48px;
+  column-gap: 20px;
+}
+
+.posts {
+  background-color: #5a98e7;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  &__card {
+    max-width: 320px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 1px 5px 0px rgb(51 51 51 / 20%), 0px 2px 2px 0px rgb(51 51 51 / 14%),
+      0px 3px 1px -2px rgb(51 51 51 / 12%);
+  }
+
+  &__media {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 320px;
+  }
+
+  &__content {
+    display: block;
+    padding: 16px 24px;
+  }
+}
