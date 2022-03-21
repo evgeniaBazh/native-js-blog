@@ -39,7 +39,7 @@ body {
 .container {
   width: 1250px;
   display: grid;
-  justify-content: space-between;
+  justify-content: center;
   padding: 60px 30px 80px 30px;
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, 320px);
@@ -65,7 +65,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  max-width: 320px;
+  width: 320px;
+  height: 200px;
+  object-fit: cover;
 }
 .posts__content {
   display: block;
