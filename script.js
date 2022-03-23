@@ -92,13 +92,32 @@ function Cards(cards) {
 
 // Отрисовка полного содержимого поста при нажатии на карточку
 function Post(props) {
+    const post = document.createElement('div');
+    const wrap = document.createElement('div');
+    const img = document.createElement('img');
     const h1 = document.createElement('h1');
-    h1.className = 'posts__headLine';
+    const containerPost = document.createElement('div');
+    const p = document.createElement('p');
+
+    wrap.className = 'wrap';
+    img.className = 'wrap__media';
+    h1.className = 'wrap__header wrap__header--centered';
+    containerPost.className = 'container-post';
+    p.className = 'text';
+
+    img.src = props.img;
     h1.textContent = props.header;
-    h1.style.marginTop = '100px'
+    p.innerHTML = parser(props.text);
+
+    wrap.appendChild(img);
+    wrap.appendChild(h1);
+    post.appendChild(wrap);
+    post.appendChild(containerPost)
+    containerPost.appendChild(p);
    
-    return h1;
+    return post;
 }
+
 
 // Инициализация всего приложения
 function App() {
@@ -112,7 +131,15 @@ function App() {
         {
             img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243',
             header: 'Blue Mountains',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
+            text: `
+            Даже если учесть разреженный газ, заполняющий пространство между звездами,
+            то все равно прямое восхождение ищет далекий афелий.[img src="https://photopoint.com.ua/wp-content/uploads/2015/01/Kak-snimat-peyzazh-2.jpg"] Конечно, нельзя не принять
+            во внимание тот факт, что секстант иллюстрирует случайный маятник Фуко.
+            [img src="http://storge.pic2.me/cm/2048x2048/661/584d22689a484.jpg"]
+            Выравниванием по ширине называется такой способ форматирования текста,
+            <script>alert('Vzlom')</script>
+            когда левый и правый края текста выравниваются по вертикальным линиям (рис. 1).
+            `,
         },
         {
             img: 'https://photocasa.ru/uploads/posts/2017-01/1485218882_img_5932.jpg',
@@ -131,6 +158,9 @@ function App() {
         }
     ]
 
+    console.log(parser(cards[0].text))
+
+
     // Добавляет блок для контента страниц, чтобы избежать перерисовки шапки
     document.body.append(Header(links));
     const newMain = document.createElement('main');
@@ -141,4 +171,16 @@ function App() {
 }
 
 
-App()
+App();
+
+function parser(text) {
+    text = text.replace(/<\/?[^>]+>/g,'');
+    text.match(/\[img src=".*"\]/gm).forEach(img => {
+        const preSep = 'src="';
+        const pre = img.slice(img.indexOf(preSep) + preSep.length);
+        const src = pre.slice(0, pre.indexOf('"'));
+        text = text.replace(img, `<img src="${src}">`);
+    })
+    
+    return text;
+}
