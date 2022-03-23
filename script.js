@@ -1,11 +1,43 @@
 // Название компонентов пишется с заглавной буквы
 
+ // Данные постов
+ const cards = [
+    {
+        img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243',
+        header: 'Blue Mountains',
+        text: `
+        Даже если учесть разреженный газ, заполняющий пространство между звездами,
+        то все равно прямое восхождение ищет далекий афелий.[img src="https://photopoint.com.ua/wp-content/uploads/2015/01/Kak-snimat-peyzazh-2.jpg"] Конечно, нельзя не принять
+        во внимание тот факт, что секстант иллюстрирует случайный маятник Фуко.
+        [img src="http://storge.pic2.me/cm/2048x2048/661/584d22689a484.jpg"]
+        Выравниванием по ширине называется такой способ форматирования текста,
+        <script>alert('Vzlom')</script>
+        когда левый и правый края текста выравниваются по вертикальным линиям (рис. 1).
+        `,
+    },
+    {
+        img: 'https://photocasa.ru/uploads/posts/2017-01/1485218882_img_5932.jpg',
+        header: 'Sunflowers',
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
+    },
+    {
+        img: 'https://vkrym.su/Images/Get/638',
+        header: 'Sea',
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
+    },
+    {
+        img: 'https://funart.pro/uploads/posts/2021-04/1618436301_53-funart_pro-p-oboi-fon-kosmos-zvezdi-54.jpg',
+        header: 'Cosmos',
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
+    }
+]
 
 let main = null;
 
 const routes = {
     cards: Cards,
     post: Post,
+    addCard: AddCard,
 }
 
 /**
@@ -37,13 +69,24 @@ function Header(arr) {
         link.classList.add('head__link');
         link.textContent = arr[i];
         nav.append(link);
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (link.textContent === 'Посты') {
+                navigate('cards', cards)
+            } else if (link.textContent === 'Создать') {
+                navigate('addCard', cards)
+            }
+        });
     }
 
+
     header.append(nav);
+
     return header;
 }
 
-// Отрисовка карточки
+// Отрисовка карточки в памяти
 function Card(props) {
     const card = document.createElement('div');
     const media = document.createElement('img');
@@ -126,38 +169,6 @@ function App() {
         'Создать'
     ];
 
-    // Данные постов
-    const cards = [
-        {
-            img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243',
-            header: 'Blue Mountains',
-            text: `
-            Даже если учесть разреженный газ, заполняющий пространство между звездами,
-            то все равно прямое восхождение ищет далекий афелий.[img src="https://photopoint.com.ua/wp-content/uploads/2015/01/Kak-snimat-peyzazh-2.jpg"] Конечно, нельзя не принять
-            во внимание тот факт, что секстант иллюстрирует случайный маятник Фуко.
-            [img src="http://storge.pic2.me/cm/2048x2048/661/584d22689a484.jpg"]
-            Выравниванием по ширине называется такой способ форматирования текста,
-            <script>alert('Vzlom')</script>
-            когда левый и правый края текста выравниваются по вертикальным линиям (рис. 1).
-            `,
-        },
-        {
-            img: 'https://photocasa.ru/uploads/posts/2017-01/1485218882_img_5932.jpg',
-            header: 'Sunflowers',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
-        },
-        {
-            img: 'https://vkrym.su/Images/Get/638',
-            header: 'Sea',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
-        },
-        {
-            img: 'https://funart.pro/uploads/posts/2021-04/1618436301_53-funart_pro-p-oboi-fon-kosmos-zvezdi-54.jpg',
-            header: 'Cosmos',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
-        }
-    ]
-
     console.log(parser(cards[0].text))
 
 
@@ -174,8 +185,15 @@ function App() {
 App();
 
 function parser(text) {
+    if (!text) {
+        return text;
+    }
     text = text.replace(/<\/?[^>]+>/g,'');
-    text.match(/\[img src=".*"\]/gm).forEach(img => {
+    const chanks = text.match(/\[img src=".*"\]/gm);
+    if (!chanks) {
+        return text;
+    }
+    chanks.forEach(img => {
         const preSep = 'src="';
         const pre = img.slice(img.indexOf(preSep) + preSep.length);
         const src = pre.slice(0, pre.indexOf('"'));
@@ -183,4 +201,46 @@ function parser(text) {
     })
     
     return text;
+}
+
+function AddCard() {
+    const wrap = document.createElement('div');
+    const container = document.createElement('div');
+    const post = document.createElement('div');
+    const header = document.createElement('input');
+    const photo = document.createElement('input');
+    const article = document.createElement('textarea');
+    const btn = document.createElement('button');
+    const titleLabel = document.createElement('p');
+    const urlLabel = document.createElement('p');
+    const textLabel = document.createElement('p');
+
+    wrap.className ='wrapCreatePost';
+    container.className = 'containerCreatePost';
+    post.className = 'createPost';
+    header.className = 'createPost__header';
+    photo.className = 'createPost__photo';
+    article.className = 'createPost__article';
+    btn.className = 'createPost__btn';
+    titleLabel.className = 'createPost__titleLabel';
+    urlLabel.className = 'createPost__urlLabel';
+    textLabel.className = 'createPost__textLabel';
+
+    titleLabel.textContent = 'Заголовок';
+    urlLabel.textContent = 'Главное фото';
+    textLabel.textContent = 'Текст поста';
+    btn.textContent = 'Опубликовать';
+
+    wrap.appendChild(container);
+    container.appendChild(post);
+    post.appendChild(titleLabel);
+    post.appendChild(header);
+    post.appendChild(urlLabel);
+    post.appendChild(photo);
+    post.appendChild(textLabel);
+    post.appendChild(article);
+    post.appendChild(btn);
+    document.body.append(wrap);
+
+    return wrap;
 }
