@@ -215,16 +215,16 @@ function AddCard() {
     const urlLabel = document.createElement('p');
     const textLabel = document.createElement('p');
 
-    wrap.className ='wrapCreatePost';
-    container.className = 'containerCreatePost';
-    post.className = 'createPost';
-    header.className = 'createPost__header';
-    photo.className = 'createPost__photo';
-    article.className = 'createPost__article';
-    btn.className = 'createPost__btn';
-    titleLabel.className = 'createPost__titleLabel';
-    urlLabel.className = 'createPost__urlLabel';
-    textLabel.className = 'createPost__textLabel';
+    wrap.className ='wrap-create-post';
+    container.className = 'container-create-post';
+    post.className = 'create-post';
+    header.className = 'create-post__header';
+    photo.className = 'create-post__photo';
+    article.className = 'create-post__article';
+    btn.className = 'create-post__btn';
+    titleLabel.className = 'create-post__titleLabel';
+    urlLabel.className = 'create-post__urlLabel';
+    textLabel.className = 'create-post__textLabel';
 
     titleLabel.textContent = 'Заголовок';
     urlLabel.textContent = 'Главное фото';

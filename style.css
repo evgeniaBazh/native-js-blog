@@ -147,14 +147,13 @@ body {
   margin: 0 auto;
 }
 
-.wrapCreatePost {
+.wrap-create-post {
   height: 100%;
   background-color: #5a98e7;
 }
 
-.containerCreatePost {
+.container-create-post {
   width: 100%;
-  max-height: 700px;
   max-width: 1000px;
   justify-content: center;
   padding: 60px 30px 80px 30px;
@@ -163,16 +162,19 @@ body {
   margin-top: 48px;
 }
 
-.createPost {
+.create-post {
   font-size: 24px;
   font-weight: 600;
-  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 48px;
 }
-.createPost__header, .createPost__photo {
+.create-post input,
+.create-post textarea {
+  padding: 8px;
+}
+.create-post__header, .create-post__photo {
   outline: none;
   cursor: pointer;
   margin-top: 4px;
@@ -184,7 +186,7 @@ body {
   font-weight: 400;
   color: #181010;
 }
-.createPost__article {
+.create-post__article {
   border-radius: 5px;
   border: 1px solid #4c84ce;
   outline: none;
@@ -194,19 +196,22 @@ body {
   color: #181010;
   min-height: 200px;
 }
-.createPost__btn {
-  border-radius: 25px;
-  border-color: #ffffff;
-  color: #4c84ce;
+.create-post__btn {
+  border-radius: 2px;
+  margin-top: 20px;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  background: white;
+  box-shadow: 0px 1px 8px 0px rgba(0, 0, 236, 0.2), 0px 3px 4px 0px rgba(0, 0, 236, 0.14), 0px 3px 3px -2px rgba(0, 0, 236, 0.12);
   font-size: 16px;
   font-weight: 600;
-  height: 60px;
-  max-width: 150px;
-  border: 1px solid #4c84ce;
+  padding: 0 14px;
+  min-height: 36px;
+  min-width: 64px;
   outline: none;
   cursor: pointer;
-  margin-top: 48px;
-  margin-left: 25vw;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
