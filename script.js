@@ -211,6 +211,22 @@ function AddCard() {
     const photo = document.createElement('input');
     const article = document.createElement('textarea');
     const btn = document.createElement('button');
+    const p = document.createElement('p');
+    const publish = () => {
+        const keys = ['img', 'header', 'text'];
+        const values = [photo.value, header.value, article.value];
+        const obj = {};
+
+        for (let i = 0; i < keys.length; i++) {
+            obj[keys[i]] = values[i];
+        }
+
+        return cards.push(obj);
+    }
+    btn.addEventListener('click', () => {
+        publish();
+        navigate('cards', cards);
+    })
     const titleLabel = document.createElement('p');
     const urlLabel = document.createElement('p');
     const textLabel = document.createElement('p');
@@ -225,11 +241,14 @@ function AddCard() {
     titleLabel.className = 'create-post__titleLabel';
     urlLabel.className = 'create-post__urlLabel';
     textLabel.className = 'create-post__textLabel';
+    p.className = "create-post__textMini";
+
 
     titleLabel.textContent = 'Заголовок';
     urlLabel.textContent = 'Главное фото';
     textLabel.textContent = 'Текст поста';
     btn.textContent = 'Опубликовать';
+    p.textContent = 'Вставка изображений  [img src="url"]';
 
     wrap.appendChild(container);
     container.appendChild(post);
@@ -238,9 +257,26 @@ function AddCard() {
     post.appendChild(urlLabel);
     post.appendChild(photo);
     post.appendChild(textLabel);
+    post.appendChild(p);
     post.appendChild(article);
     post.appendChild(btn);
     document.body.append(wrap);
 
     return wrap;
+}
+
+function Publish() {
+    const header = document.querySelector('.create-post__header');
+    const photo = document.querySelector('.create-post__photo');
+    const textarea = document.querySelector('.create-post__article');
+
+    let keys = ['img', 'header', 'text'];
+    let values = [header.value, photo.value, textarea.value];
+    let obj = {};
+
+    for (let i = 0; i < keys.length; i++) {
+        obj[keys[i]] = values[i];
+    }
+
+    return cards.push(obj);
 }
