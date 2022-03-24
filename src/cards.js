@@ -1,6 +1,7 @@
 // Данные постов
 const cards = [
     {
+        id: 1,
         img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2FMountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243',
         header: 'Blue Mountains',
         text: `
@@ -14,16 +15,19 @@ const cards = [
         `,
     },
     {
+        id: 2,
         img: 'https://photocasa.ru/uploads/posts/2017-01/1485218882_img_5932.jpg',
         header: 'Sunflowers',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
     },
     {
+        id: 3,
         img: 'https://vkrym.su/Images/Get/638',
         header: 'Sea',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
     },
     {
+        id: 4,
         img: 'https://funart.pro/uploads/posts/2021-04/1618436301_53-funart_pro-p-oboi-fon-kosmos-zvezdi-54.jpg',
         header: 'Cosmos',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae laboriosam ipsa animi alias rem.',
