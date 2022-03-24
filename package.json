@@ -7,5 +7,9 @@
     "start": "sass style.scss style.css --watch"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "~5.70.0",
+    "webpack-cli": "~4.9.2"
+  }
 }
