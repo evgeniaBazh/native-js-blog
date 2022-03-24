@@ -3,7 +3,6 @@ import { cards } from './cards';
 
 // Отрисовка шапки
 export function Header(arr) {
-    console.log(cards);
     const header = document.createElement('header');
     const nav = document.createElement('div');
     const img = document.createElement('img');
